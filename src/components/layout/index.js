@@ -1,13 +1,26 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import {
-  AppBar, CssBaseline, Divider, Drawer, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer,
+  Hidden,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
 } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
+
+import {NavLink} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -48,28 +61,30 @@ class Layout extends React.Component {
   };
 
   handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+    this.setState(state => ({mobileOpen: !state.mobileOpen}));
   };
 
   render() {
-    const { children, classes, theme } = this.props;
+    const {children, classes, theme} = this.props;
 
     const drawer = (
         <div>
-          <div className={classes.toolbar} />
-          <Divider />
+          <Hidden smDown>
+            <div className={classes.toolbar}/>
+          </Hidden>
+          <Divider/>
           <List component="nav">
-            <ListItem button>
+            <ListItem component={NavLink} to="/" button>
               <ListItemIcon>
-                <HomeIcon />
+                <HomeIcon/>
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary="Home"/>
             </ListItem>
-            <ListItem button>
+            <ListItem component={NavLink} to="/blog" button>
               <ListItemIcon>
-                <ListIcon />
+                <ListIcon/>
               </ListItemIcon>
-              <ListItemText primary="Blog" />
+              <ListItemText primary="Blog"/>
             </ListItem>
           </List>
         </div>
@@ -87,7 +102,7 @@ class Layout extends React.Component {
                     onClick={this.handleDrawerToggle}
                     className={classes.navIconHide}
                 >
-                  <MenuIcon />
+                  <MenuIcon/>
                 </IconButton>
                 <Typography variant="h6" color="inherit" noWrap>
                   Carbon LDP / React Blog Engine
@@ -122,7 +137,7 @@ class Layout extends React.Component {
               </Drawer>
             </Hidden>
             <main className={classes.content}>
-              <div className={classes.toolbar} />
+              <div className={classes.toolbar}/>
               {children}
             </main>
           </div>
@@ -136,4 +151,4 @@ Layout.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Layout);
+export default withStyles(styles, {withTheme: true})(Layout);
