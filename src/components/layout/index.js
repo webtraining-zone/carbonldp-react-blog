@@ -19,6 +19,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
+import CreateIcon from '@material-ui/icons/Create';
 
 import {NavLink} from 'react-router-dom';
 
@@ -85,6 +86,13 @@ class Layout extends React.Component {
                 <ListIcon/>
               </ListItemIcon>
               <ListItemText primary="Blog"/>
+            </ListItem>
+            <Divider/>
+            <ListItem component={NavLink} to="/blog/posts/new" button>
+              <ListItemIcon>
+                <CreateIcon/>
+              </ListItemIcon>
+              <ListItemText primary="New Post"/>
             </ListItem>
           </List>
         </div>
